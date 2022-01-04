@@ -70,7 +70,6 @@ int32_t main()
                 {
                     mp[r] = x;
                 }
-                //mp[r] = x;
             }
             else if (mina > l)
             {
