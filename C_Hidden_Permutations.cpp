@@ -70,6 +70,13 @@ int32_t main()
             }
             cnt++;
         }
+        cout << "! ";
+        for (int i = 1; i <= n - 1; i++)
+        {
+            cout << vp[i] << " ";
+        }
+        cout << vp[n] << endl;
+        cout.flush();
     }
     return 0;
 }
