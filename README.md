@@ -1,2 +1,2 @@
 # CP QUESTIONS
-all question that i do will be avilabel here.
+all question that i do will be availabel here.
