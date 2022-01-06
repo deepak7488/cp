@@ -44,32 +44,50 @@ int32_t main()
         cin >> n;
         int mina = INT32_MAX, cost = INT32_MAX;
         int maxa = INT32_MIN;
-        map<int, int> mp;
-        // int cost = INT32_MAX;
+        // map<int, int> mp;
+        int costl = INT32_MAX, costr = INT32_MAX;
+        //  int cost = INT32_MAX;
         for (int i = 0; i < n; i++)
         {
             cin >> l >> r >> x;
             if ((mina > l && maxa < r) || (mina >= l && maxa < r) || (mina > l && maxa <= r))
             {
                 cost = x;
-                mp[l] = mp[l] != 0 ? min(mp[l], x) : x;
-                mp[r] = mp[r] != 0 ? min(mp[r], x) : x;
+                // if(mina==l || maxa==r){
+                // costl = min(costl, x);
+                // costr = min(costr, x);}
+                costl = mina == l ? min(costl, x) : x;
+                costr = maxa == r ? min(costr, x) : x;
+                // mp[l] = mp[l] != 0 ? min(mp[l], x) : x;
+                // mp[r] = mp[r] != 0 ? min(mp[r], x) : x;
             }
             else if (mina == l && maxa == r)
             {
                 cost = min(cost, x);
-                mp[l] = min(x, mp[l]);
-                mp[r] = min(x, mp[r]);
+                costl = min(costl, x);
+                costr = min(costr, x);
+                // mp[l] = min(x, mp[l]);
+                // mp[r] = min(x, mp[r]);
             }
             else if (mina > l || maxa < r)
             {
-                cost = x + mp[mina > l ? maxa : mina];
-                mp[mina > l ? l : r] = x;
+                // cost = x + mp[mina > l ? maxa : mina];
+                cost = x + (mina > l ? costr : costl);
+                // mp[mina > l ? l : r] = x;
+                if (mina > l)
+                    costl = x;
+                else
+                    costr = x;
             }
             else if (mina == l || maxa == r)
             {
-                cost = min(cost, x + mp[maxa == r ? mina : maxa]);
-                mp[mina == l ? l : r] = min(mp[mina == l ? l : r], x);
+                // cost = min(cost, x + mp[maxa == r ? mina : maxa]);
+                cost = min(cost, x + (mina == l ? costr : costl));
+                // mp[mina == l ? l : r] = min(mp[mina == l ? l : r], x);
+                if (mina == l)
+                    costl = min(costl, x);
+                else
+                    costr = min(costr, x);
             }
             mina = min(mina, l);
             maxa = max(maxa, r);
